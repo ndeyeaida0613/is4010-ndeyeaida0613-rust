@@ -27,7 +27,6 @@ fn main() {
     // problem_7();
 }
 
-// ============================================================================
 // PROBLEM 1: Borrow instead of moving
 fn problem_1() {
     println!("Problem 1: Value used after move");
