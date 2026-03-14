@@ -105,6 +105,7 @@ impl Student {
             0.0
         } else {
             total_quality_points / (total_credits as f32)
+              }
         }
 }
 
