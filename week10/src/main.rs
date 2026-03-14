@@ -1,18 +1,3 @@
-// Week 10: Mastering ownership and borrowing
-//
-// This lab has two parts:
-//
-// PART 1 — Borrow checker puzzles (7 problems)
-//   Each problem is a function that has a compile error related to ownership or
-//   borrowing. Read the comment above each one, fix the bug, then uncomment the
-//   call in main() to verify it runs.
-//
-// PART 2 — Implementation exercises (5 functions)
-//   Write functions that demonstrate correct ownership/borrowing patterns.
-//   The test suite at the bottom verifies your implementations.
-//
-// Run: cargo test
-
 fn main() {
     println!("Week 10: Mastering ownership and borrowing");
     println!("Uncomment one problem at a time and fix it!\n");
@@ -26,7 +11,6 @@ fn main() {
     // problem_6();
     // problem_7();
 }
-
 // PROBLEM 1: Borrow instead of moving
 fn problem_1() {
     println!("Problem 1: Value used after move");
@@ -34,11 +18,9 @@ fn problem_1() {
     let len = calculate_length(&s1); 
     println!("  The length of '{}' is {}.", s1, len);
 }
-
 fn calculate_length(s: &String) -> usize {
     s.len()
 }
-
 // PROBLEM 2: End the first borrow before starting the mutable one
 fn problem_2() {
     println!("Problem 2: Mutable and immutable borrow conflict");
@@ -48,7 +30,6 @@ fn problem_2() {
     let r2 = &mut s;  
     println!("  r2: {}", r2);
 }
-
 // PROBLEM 3: Use mutable references
 fn problem_3() {
     println!("Problem 3: Mutating through an immutable reference");
@@ -60,7 +41,6 @@ fn problem_3() {
 fn add_to_string(s: &mut String) {
     s.push_str(", world");
 }
-
 // PROBLEM 4: Use a scope to isolate the first mutable borrow
 fn problem_4() {
     println!("Problem 4: Multiple mutable borrows");
@@ -79,12 +59,10 @@ fn problem_5() {
     let r = create_string();
     println!("  Got: {}", r);
 }
-
 fn create_string() -> String {
     let s = String::from("hello");
     s 
 }
-
 // PROBLEM 6: Pass a reference in the loop
 fn problem_6() {
     println!("Problem 6: Ownership in loops");
@@ -93,11 +71,9 @@ fn problem_6() {
         print_with_number(&data, i); 
     }
 }
-
 fn print_with_number(s: &String, n: i32) {
     println!("  {}: {}", n, s);
 }
-
 // PROBLEM 7: Move the declaration to the outer scope
 fn problem_7() {
     println!("Problem 7: Lifetime extension");
@@ -108,7 +84,6 @@ fn problem_7() {
     }
     println!("  Result: {}", result);
 }
-
 // ============================================================================
 // PART 2 — Implementation exercises
 // ============================================================================
@@ -116,20 +91,16 @@ fn problem_7() {
 pub fn to_uppercase_owned(s: String) -> String {
     s.to_uppercase()
 }
-
 #[allow(clippy::ptr_arg)]
 pub fn string_length(s: &String) -> usize {
     s.len()
 }
-
 pub fn append_suffix(s: &mut String, suffix: &str) {
     s.push_str(suffix);
 }
-
 pub fn concat_strings(s1: &str, s2: &str) -> String {
     format!("{}{}", s1, s2)
 }
-
 // ============================================================================
 // TESTS — DO NOT MODIFY
 // ============================================================================
