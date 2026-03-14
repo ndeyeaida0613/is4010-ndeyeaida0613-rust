@@ -43,8 +43,9 @@ fn main() {
 /// assert_eq!(add(2, 3), 5);
 /// assert_eq!(add(-1, 1), 0);
 /// ```
-fn add(_a: i32, _b: i32) -> i32 {
-   return _a + _b
+fn add(a: i32, b: i32) -> i32 {
+    a + b
+}
 /// Returns the product of `a` and `b`.
 ///
 /// # Examples
@@ -52,8 +53,8 @@ fn add(_a: i32, _b: i32) -> i32 {
 /// assert_eq!(multiply(3, 4), 12);
 /// assert_eq!(multiply(0, 99), 0);
 /// ```
-fn multiply(_a: i32, _b: i32) -> i32 {
-    return _a * _b
+fn multiply(a: i32, b: i32) -> i32 {
+    a * b
 }
 
 // ============================================================================
@@ -67,8 +68,8 @@ fn multiply(_a: i32, _b: i32) -> i32 {
 /// assert!(is_even(4));
 /// assert!(!is_even(7));
 /// ```
-fn is_even(_n: i32) -> bool {
-    return true if n % 2 == 0
+fn is_even(n: i32) -> bool {
+    n % 2 == 0
 }
 
 // ============================================================================
@@ -83,8 +84,8 @@ fn is_even(_n: i32) -> bool {
 /// assert_eq!(max(3, 9), 9);
 /// assert_eq!(max(5, 5), 5);
 /// ```
-fn max(_a: i32, _b: i32) -> i32 {
-    return the largest of the two values
+fn max(a: i32, b: i32) -> i32 {
+    if a > b { a } else { b }
 }
 
 // ============================================================================
@@ -98,8 +99,8 @@ fn max(_a: i32, _b: i32) -> i32 {
 /// assert_eq!(square(5), 25);
 /// assert_eq!(square(0), 0);
 /// ```
-fn square(_n: i32) -> i32 {
-    return _n * _n
+fn square(n: i32) -> i32 {
+    n * n
 }
 
 // ============================================================================
@@ -113,8 +114,8 @@ fn square(_n: i32) -> i32 {
 /// assert_eq!(reverse_string("hello"), "olleh");
 /// assert_eq!(reverse_string(""), "");
 /// ```
-fn reverse_string(_s: &str) -> String {
-    return the input string reversed 
+fn reverse_string(s: &str) -> String {
+    s.chars().rev().collect()
 }
 
 /// Joins words with the given separator.
@@ -124,8 +125,8 @@ fn reverse_string(_s: &str) -> String {
 /// assert_eq!(concat_with_separator(&["hello", "world"], "-"), "hello-world");
 /// assert_eq!(concat_with_separator(&[], ","), "");
 /// ```
-fn concat_with_separator(_words: &[&str], _sep: &str) -> String {
-    Join words with the given separator
+fn concat_with_separator(words: &[&str], sep: &str) -> String {
+    words.join(sep)
 }
 
 // ============================================================================
@@ -139,8 +140,8 @@ fn concat_with_separator(_words: &[&str], _sep: &str) -> String {
 /// assert_eq!(find_max_in_vec(&[1, 5, 3]), Some(5));
 /// assert_eq!(find_max_in_vec(&[]), None);
 /// ```
-fn find_max_in_vec(_numbers: &[i32]) -> Option<i32> {
-    return largest number or None if the list is empty
+fn find_max_in_vec(nums: &[i32]) -> Option<i32> {
+    nums.iter().max().copied()
 }
 
 /// Returns the count of even numbers in the slice.
@@ -150,8 +151,8 @@ fn find_max_in_vec(_numbers: &[i32]) -> Option<i32> {
 /// assert_eq!(count_evens(&[1, 2, 3, 4]), 2);
 /// assert_eq!(count_evens(&[]), 0);
 /// ```
-fn count_evens(_numbers: &[i32]) -> usize {
-    return the count of even numbers in the slice
+fn count_evens(nums: &[i32]) -> usize {
+    nums.iter().filter(|&n| n % 2 == 0).count()
 }
 
 // ============================================================================
