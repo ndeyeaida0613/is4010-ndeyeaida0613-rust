@@ -103,7 +103,7 @@ fn problem_3() {
 fn add_to_string(s: &String) {
     s.push_str(", world");
 }
-*/
+
 
 // ============================================================================
 // PROBLEM 4: Multiple mutable borrows
@@ -123,7 +123,7 @@ fn problem_4() {
 
     println!("  {}, {}", r1, r2);
 }
-*/
+
 
 // ============================================================================
 // PROBLEM 5: Dangling reference
