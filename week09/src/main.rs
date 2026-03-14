@@ -44,9 +44,7 @@ fn main() {
 /// assert_eq!(add(-1, 1), 0);
 /// ```
 fn add(_a: i32, _b: i32) -> i32 {
-   return a + b
-}
-
+   return _a + _b
 /// Returns the product of `a` and `b`.
 ///
 /// # Examples
@@ -55,7 +53,7 @@ fn add(_a: i32, _b: i32) -> i32 {
 /// assert_eq!(multiply(0, 99), 0);
 /// ```
 fn multiply(_a: i32, _b: i32) -> i32 {
-    return a * b
+    return _a * _b
 }
 
 // ============================================================================
@@ -101,7 +99,7 @@ fn max(_a: i32, _b: i32) -> i32 {
 /// assert_eq!(square(0), 0);
 /// ```
 fn square(_n: i32) -> i32 {
-    return n * n
+    return _n * _n
 }
 
 // ============================================================================
