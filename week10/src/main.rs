@@ -47,7 +47,11 @@ fn calculate_length(s: String) -> (String, usize) {
     let length = s.len();
     (s, length)
 }
-*/
+fn problem_1() {
+    let s1 = String::from("hello");
+    let len = calculate_length(&s1); // Pass a reference
+    println!("  The length of '{}' is {}.", s1, len); // Now s1 is still valid!
+}
 
 // ============================================================================
 // PROBLEM 2: Immutable and mutable borrow conflict
@@ -57,7 +61,9 @@ fn calculate_length(s: String) -> (String, usize) {
 //
 // Learning goal: Understand the "one mutable OR many immutable" rule.
 // ============================================================================
-/*
+fn calculate_length(s: &String) -> usize {
+    s.len()
+}
 fn problem_2() {
     println!("Problem 2: Mutable and immutable borrow conflict");
     let mut s = String::from("hello");
@@ -65,7 +71,14 @@ fn problem_2() {
     let r2 = &mut s;  // mutable borrow — ERROR!
     println!("  {}, {}", r1, r2);
 }
-*/
+fn problem_2() {
+    let mut s = String::from("hello");
+    let r1 = &s; 
+    println!("  {}", r1); // Use r1 here...
+    // r1's lifetime ends here because it's no longer used.
+    let r2 = &mut s; // Now this is safe!
+    println!("  {}", r2);
+}
 
 // ============================================================================
 // PROBLEM 3: Mutating through an immutable reference
@@ -75,7 +88,11 @@ fn problem_2() {
 //
 // Learning goal: Know when to use &T vs &mut T.
 // ============================================================================
-/*
+fn problem_3() {
+    let mut s = String::from("hello");
+    add_to_string(&mut s);
+    println!("  Result: {}", s);
+}
 fn problem_3() {
     println!("Problem 3: Mutating through an immutable reference");
     let s = String::from("hello");
@@ -127,7 +144,10 @@ fn create_string() -> &String {
     let s = String::from("hello");
     &s // ERROR: returning reference to local variable
 }
-*/
+fn create_string() -> String {
+    let s = String::from("hello");
+    s // Return the value, not &s
+}
 
 // ============================================================================
 // PROBLEM 6: Ownership in loops
@@ -183,7 +203,7 @@ fn problem_7() {
 ///
 /// Demonstrates: move in, transform, move out ("consume and return" pattern).
 pub fn to_uppercase_owned(_s: String) -> String {
-    todo!("Implement to_uppercase_owned — hint: .to_uppercase()")
+    s.to_uppercase()
 }
 
 /// Borrows a String immutably and returns its length.
@@ -191,21 +211,21 @@ pub fn to_uppercase_owned(_s: String) -> String {
 /// Demonstrates: read-only borrowing.
 #[allow(clippy::ptr_arg)]
 pub fn string_length(_s: &String) -> usize {
-    todo!("Implement string_length — hint: .len()")
+    s.len()
 }
 
 /// Borrows a String mutably and appends `suffix` to it in place.
 ///
 /// Demonstrates: in-place mutation through a mutable borrow.
 pub fn append_suffix(_s: &mut String, _suffix: &str) {
-    todo!("Implement append_suffix — hint: .push_str()")
+    s.push_str(suffix);
 }
 
 /// Creates a new owned String by concatenating two borrowed string slices.
 ///
 /// Demonstrates: producing owned data from borrowed inputs.
 pub fn concat_strings(_s1: &str, _s2: &str) -> String {
-    todo!("Implement concat_strings — hint: format!() or String::from() + push_str()")
+    format!("{}{}", s1, s2)
 }
 
 // ============================================================================
