@@ -44,7 +44,7 @@ fn main() {
 /// assert_eq!(add(-1, 1), 0);
 /// ```
 fn add(_a: i32, _b: i32) -> i32 {
-    a + b
+   return a + b
 }
 
 /// Returns the product of `a` and `b`.
@@ -55,7 +55,7 @@ fn add(_a: i32, _b: i32) -> i32 {
 /// assert_eq!(multiply(0, 99), 0);
 /// ```
 fn multiply(_a: i32, _b: i32) -> i32 {
-    a * b
+    return a * b
 }
 
 // ============================================================================
@@ -70,7 +70,7 @@ fn multiply(_a: i32, _b: i32) -> i32 {
 /// assert!(!is_even(7));
 /// ```
 fn is_even(_n: i32) -> bool {
-    true if n % 2 == 0
+    return true if n % 2 == 0
 }
 
 // ============================================================================
@@ -86,7 +86,7 @@ fn is_even(_n: i32) -> bool {
 /// assert_eq!(max(5, 5), 5);
 /// ```
 fn max(_a: i32, _b: i32) -> i32 {
-    if/else
+    return the largest of the two values
 }
 
 // ============================================================================
@@ -101,7 +101,7 @@ fn max(_a: i32, _b: i32) -> i32 {
 /// assert_eq!(square(0), 0);
 /// ```
 fn square(_n: i32) -> i32 {
-    n * n
+    return n * n
 }
 
 // ============================================================================
@@ -116,7 +116,7 @@ fn square(_n: i32) -> i32 {
 /// assert_eq!(reverse_string(""), "");
 /// ```
 fn reverse_string(_s: &str) -> String {
-    s.chars().rev().collect()
+    return the input string reversed 
 }
 
 /// Joins words with the given separator.
@@ -127,7 +127,7 @@ fn reverse_string(_s: &str) -> String {
 /// assert_eq!(concat_with_separator(&[], ","), "");
 /// ```
 fn concat_with_separator(_words: &[&str], _sep: &str) -> String {
-    .join(sep)
+    Join words with the given separator
 }
 
 // ============================================================================
@@ -153,7 +153,7 @@ fn find_max_in_vec(_numbers: &[i32]) -> Option<i32> {
 /// assert_eq!(count_evens(&[]), 0);
 /// ```
 fn count_evens(_numbers: &[i32]) -> usize {
-    .iter().filter(...) and .count()
+    return the count of even numbers in the slice
 }
 
 // ============================================================================
