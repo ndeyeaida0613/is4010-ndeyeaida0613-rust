@@ -42,8 +42,6 @@ impl<T> Stack<T> {
     pub fn push(&mut self, item: T) {
         self.data.push(item);
     }
-    ///...rest unchanged...
-}
     /// Removes and returns the top item, or `None` if the stack is empty.
     pub fn pop(&mut self) -> Option<T> {
         self.data.pop()
