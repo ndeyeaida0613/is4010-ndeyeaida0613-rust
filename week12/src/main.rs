@@ -37,17 +37,13 @@ impl<T> Stack<T> {
     /// Creates a new, empty stack.
     pub fn new() -> Self {
         Stack { data: Vec::new() }
-<<<<<<< HEAD
     }
-=======
-}
->>>>>>> 65263adc206b5da0de2eb9f1c5dbf0cb15664f43
-
     /// Pushes `item` onto the top of the stack.
     pub fn push(&mut self, item: T) {
         self.data.push(item);
     }
-
+    ///...rest unchanged...
+}
     /// Removes and returns the top item, or `None` if the stack is empty.
     pub fn pop(&mut self) -> Option<T> {
         self.data.pop()
