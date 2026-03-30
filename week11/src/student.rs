@@ -132,8 +132,6 @@ impl Grade {
     pub fn is_passing(&self) -> bool {
         match self {
             Grade::A | Grade::B | Grade::C => true,
-            Grade::D | Grade::F => false,
-        }
     }
 }
 
