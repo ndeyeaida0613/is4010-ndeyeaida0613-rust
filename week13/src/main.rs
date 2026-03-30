@@ -112,7 +112,7 @@ impl fmt::Display for ParseError {
 /// Parses `input` as a positive integer (> 0).
 /// Returns the number on success, or an appropriate `ParseError` on failure.
 pub fn parse_positive_number(input: &str) -> Result<i32, ParseError> {
-    let number = input.parse::<i32>().map_err(|_| ParseError::NotANumber)?;
+    let number = input.parse::<i32>().map_err(|| ParseError::NotANumber)?;
     
     if number <= 0 {
         Err(ParseError::NotPositive)
