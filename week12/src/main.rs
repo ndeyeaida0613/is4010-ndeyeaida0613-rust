@@ -76,7 +76,7 @@ impl<T> Stack<T> {
 impl<T: fmt::Debug> fmt::Display for Stack<T> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "[")?;
-        for (i, item) in self.elements.iter() .enumerate() {
+        for (i, item) in self.data.iter() .enumerate() {
             if i > 0 {
                 write!(f, ", ")?;
             }
