@@ -155,7 +155,7 @@ impl CourseGrade {
 }
     /// Returns the quality points for this course: credits × GPA points.
     pub fn quality_points(&self) -> f32 {
-        elf.credits as f32 * self.grade.to_gpa_points()
+        self.credits as f32 * self.grade.to_gpa_points()
     }
 }
 
@@ -180,7 +180,7 @@ impl StudentDatabase {
         }
     }
     /// Returns a reference to the student with the given id, or `None`.
-    pub fn find_student(&self, _id: &str) -> Option<&Student> {
+    pub fn find_student(&self, id: &str) -> Option<&Student> {
         self.students.get(id)
     }
     /// Returns a mutable reference to the student with the given id, or `None`.
