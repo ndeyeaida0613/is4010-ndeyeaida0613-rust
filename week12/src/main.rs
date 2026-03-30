@@ -36,7 +36,7 @@ pub struct Stack<T> {
 impl<T> Stack<T> {
     /// Creates a new, empty stack.
     pub fn new() -> Self {
-        Stack { data: Vec::new()}
+        Stack { data: Vec::new() }
             
     }
 
