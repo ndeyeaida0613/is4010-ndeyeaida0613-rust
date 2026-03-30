@@ -36,33 +36,35 @@ pub struct Stack<T> {
 impl<T> Stack<T> {
     /// Creates a new, empty stack.
     pub fn new() -> Self {
-        todo!("Implement Stack::new")
+        Stack {
+            elements: Vec::new(),
+        }
     }
 
     /// Pushes `item` onto the top of the stack.
     pub fn push(&mut self, _item: T) {
-        todo!("Implement push")
+        self.elements.push(item);
     }
 
     /// Removes and returns the top item, or `None` if the stack is empty.
     pub fn pop(&mut self) -> Option<T> {
-        todo!("Implement pop")
+        self.elements.pop()
     }
 
     /// Returns a reference to the top item without removing it,
     /// or `None` if the stack is empty.
     pub fn peek(&self) -> Option<&T> {
-        todo!("Implement peek")
+        self.elements.last()
     }
 
     /// Returns `true` if the stack contains no items.
     pub fn is_empty(&self) -> bool {
-        todo!("Implement is_empty")
+        self.elements.is_empty()
     }
 
     /// Returns the number of items in the stack.
     pub fn len(&self) -> usize {
-        todo!("Implement len")
+        self.elements.len()
     }
 }
 
@@ -74,7 +76,14 @@ impl<T> Stack<T> {
 // ============================================================================
 impl<T: fmt::Debug> fmt::Display for Stack<T> {
     fn fmt(&self, _f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        todo!("Implement Display for Stack<T> — hint: write!(f, \"[...]\") using self.data")
+        write!(f, "[")?;
+        for (i, item) in self.elements.iter() .enumerate() {
+            if i > 0 {
+                write!(f, ", ")?;
+            }
+            write!(f, "{}", item)?;
+        }
+        write!(f, "}")
     }
 }
 
