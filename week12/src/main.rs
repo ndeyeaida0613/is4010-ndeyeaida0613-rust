@@ -38,8 +38,6 @@ impl<T> Stack<T> {
     pub fn new() -> Self {
         Stack { data: Vec::new() }
 }
-            
-    }
 
     /// Pushes `item` onto the top of the stack.
     pub fn push(&mut self, item: T) {
