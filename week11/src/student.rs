@@ -33,13 +33,15 @@ pub struct CourseGrade {
     pub credits: u16,
     pub grade: Grade,
 }
+
 pub struct StudentDatabase {
     students: HashMap<String, Student>,
 }
+
 // ============================================================================
-// IMPLEMENTATIONS — replace every todo!() with a real implementation.
-// When you do, remove the leading `_` from each parameter name.
+// IMPLEMENTATIONS
 // ============================================================================
+
 impl Student {
     /// Creates a new student with the given id, name, and email.
     /// `credits_earned` starts at 0 and `grades` starts empty.
@@ -52,7 +54,7 @@ impl Student {
             grades: Vec::new(),
         }
     }
-}
+
     /// Returns a string describing the student's class standing based on credits:
     ///   0–29   → "Freshman"
     ///   30–59  → "Sophomore"
@@ -91,15 +93,16 @@ impl Student {
             return 0.0;
         }
 
-        let total_quality_points: f32 = self.grades.iter().map(|cg| cg.quality_points()).sum();
-        let total_credits: u16 = self.grades.iter().map(|cg| cg.credits).sum();
+        let total_quality_points: f32 = self.grades.iter().map(|g| g.quality_points()).sum();
+        let total_credits: u16 = self.grades.iter().map(|g| g.credits).sum();
 
         if total_credits == 0 {
-            0.0
-        } else {
-            total_quality_points / (total_credits as f32)
+            return 0.0;
         }
+
+        total_quality_points / total_credits as f32
     }
+}
 
 impl Grade {
     /// Returns the GPA points for this letter grade:
@@ -113,18 +116,11 @@ impl Grade {
             Grade::F => 0.0,
         }
     }
-}
+
     /// Parses a grade from a string (case-insensitive).
     /// Returns `None` for unrecognised inputs.
-    ///
-    /// # Examples
-    /// ```
-    /// assert_eq!(Grade::from_string("A"), Some(Grade::A));
-    /// assert_eq!(Grade::from_string("a"), Some(Grade::A));
-    /// assert_eq!(Grade::from_string("Z"), None);
-    /// ```
     pub fn from_string(s: &str) -> Option<Grade> {
-       match s.to_uppercase().as_str() {
+        match s.to_uppercase().as_str() {
             "A" => Some(Grade::A),
             "B" => Some(Grade::B),
             "C" => Some(Grade::C),
@@ -133,10 +129,16 @@ impl Grade {
             _ => None,
         }
     }
+
     /// Returns `true` for grades A, B, and C; `false` for D and F.
     pub fn is_passing(&self) -> bool {
-        matches!(self, Grade::A | Grade::B | Grade::C)
+        match self {
+            Grade::A | Grade::B | Grade::C => true,
+            Grade::D | Grade::F => false,
+        }
+    }
 }
+
 impl CourseGrade {
     /// Creates a new CourseGrade.
     pub fn new(
@@ -152,7 +154,7 @@ impl CourseGrade {
             grade,
         }
     }
-}
+
     /// Returns the quality points for this course: credits × GPA points.
     pub fn quality_points(&self) -> f32 {
         self.credits as f32 * self.grade.to_gpa_points()
@@ -166,6 +168,7 @@ impl StudentDatabase {
             students: HashMap::new(),
         }
     }
+
     /// Adds a student to the database.
     /// Returns `Err` if a student with the same id already exists.
     pub fn add_student(&mut self, student: Student) -> Result<(), String> {
@@ -179,13 +182,15 @@ impl StudentDatabase {
             Entry::Occupied(_) => Err(format!("Student with ID {} already exists", student.id)),
         }
     }
+
     /// Returns a reference to the student with the given id, or `None`.
     pub fn find_student(&self, id: &str) -> Option<&Student> {
         self.students.get(id)
     }
+
     /// Returns a mutable reference to the student with the given id, or `None`.
     pub fn find_student_mut(&mut self, id: &str) -> Option<&mut Student> {
-       self.students.get_mut(id)
+        self.students.get_mut(id)
     }
 
     /// Returns the total number of students in the database.
@@ -199,9 +204,11 @@ impl StudentDatabase {
         if self.students.is_empty() {
             return 0.0;
         }
-let total_gpa: f32 = self.students.values().map(|s| s.calculate_gpa()).sum();
+
+        let total_gpa: f32 = self.students.values().map(|s| s.calculate_gpa()).sum();
         total_gpa / self.students.len() as f32
     }
+
     /// Returns a vector of references to all students in the database.
     pub fn list_students(&self) -> Vec<&Student> {
         self.students.values().collect()
