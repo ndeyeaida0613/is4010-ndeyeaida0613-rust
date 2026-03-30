@@ -33,11 +33,9 @@ pub struct CourseGrade {
     pub credits: u16,
     pub grade: Grade,
 }
-
 pub struct StudentDatabase {
     students: HashMap<String, Student>,
 }
-
 // ============================================================================
 // IMPLEMENTATIONS — replace every todo!() with a real implementation.
 // When you do, remove the leading `_` from each parameter name.
@@ -46,7 +44,7 @@ pub struct StudentDatabase {
 impl Student {
     /// Creates a new student with the given id, name, and email.
     /// `credits_earned` starts at 0 and `grades` starts empty.
-    pub fn new(_id: String, _name: String, _email: String) -> Student {
+    pub fn new(id: String, name: String, email: String) -> Student {
         Student {
             id,
             name,
@@ -68,22 +66,18 @@ impl Student {
             _ => "Senior",
         }
     }
-
     /// Adds `credits` to the student's `credits_earned` total.
     pub fn add_credits(&mut self, _credits: u16) {
         self.credits_earned += credits;
     }
-
     /// Returns `true` if the student has earned 120 or more credits.
     pub fn can_graduate(&self) -> bool {
         self.credits_earned >= 120
     }
-
     /// Appends `course_grade` to the student's `grades` vector.
     pub fn add_grade(&mut self, _course_grade: CourseGrade) {
         self.grades.push(course_grade);
     }
-
     /// Returns the student's GPA as a weighted average using quality points.
     /// Returns 0.0 if the student has no grades.
     ///
@@ -91,12 +85,6 @@ impl Student {
     pub fn calculate_gpa(&self) -> f32 {
         if self.grades.is_empty() {
             return 0.0;
-    }
-impl Grade {
-    /// Returns the GPA points for this letter grade:
-    ///   A → 4.0, B → 3.0, C → 2.0, D → 1.0, F → 0.0
-    pub fn to_gpa_points(&self) -> f32 {
-        todo!("Implement to_gpa_points")
     }
 let total_quality_points: f32 = self.grades.iter().map(|g| g.quality_points()).sum();
         let total_credits: u16 = self.grades.iter().map(|g| g.credits).sum();
@@ -107,7 +95,19 @@ let total_quality_points: f32 = self.grades.iter().map(|g| g.quality_points()).s
 
         total_quality_points / total_credits as f32
     }
-}
+}   
+impl Grade {
+    /// Returns the GPA points for this letter grade:
+    ///   A → 4.0, B → 3.0, C → 2.0, D → 1.0, F → 0.0
+    pub fn to_gpa_points(&self) -> f32 {
+        match self {
+            Grade::A => 4.0,
+            Grade::B => 3.0,
+            Grade::C => 2.0,
+            Grade::D => 1.0,
+            Grade::F => 0.0,
+        }
+    }
     /// Parses a grade from a string (case-insensitive).
     /// Returns `None` for unrecognised inputs.
     ///
