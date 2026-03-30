@@ -25,7 +25,7 @@ fn main() {
 /// - `longest_word` is an empty String for empty input.
 ///
 /// Hint: use iterator adaptors (.split_whitespace(), .map(), .max_by_key(), etc.)
-pub fn analyze_text(_text: &str) -> (usize, f64, String) {
+pub fn analyze_text(text: &str) -> (usize, f64, String) {
     let words: Vec<&str> = text.split_whitespace().collect();
 
     if words.is_empty() {
@@ -35,14 +35,14 @@ pub fn analyze_text(_text: &str) -> (usize, f64, String) {
     let word_count = words.len();
 
     // Sum the length of all words
-    let total_chars: usize = words.iter().map(|w| w.len()).sum();
+    let total_chars: usize = words.iter().map(|w:/* Type*/| w.len()).sum();
     let avg_word_length = total_chars as f64 / word_count as f64;
 
     // Find the longest word. If there is a tie, max_by_key returns the last one.
     // We fall back to converting an empty string slice if none are found.
     let longest_word = words
         .iter()
-        .max_by_key(|w| w.len())
+        .max_by_key(|w: /* Type */| w.len())
         .unwrap_or(&"")
         .to_string();
 
@@ -54,8 +54,17 @@ pub fn analyze_text(_text: &str) -> (usize, f64, String) {
 /// Example: [1, 2, 3, 4] → 2² + 4² = 4 + 16 = 20
 ///
 /// Hint: .filter(), .map(), .sum()
+<<<<<<< HEAD
 pub fn process_numbers(_numbers: &[i32]) -> i32 {
     numbers.iter().filter(|n| *n % 2 == 0).map(|n| n * n).sum()
+=======
+pub fn process_numbers(numbers: &[i32]) -> i32 {
+    numbers
+        .iter()
+        .filter(|n| *n % 2 == 0)
+        .map(|n| n * n)
+        .sum()
+>>>>>>> ecd583e7161de28eec158ee7bb2eac4bd6a2c8cf
 }
 
 /// Returns a closure that counts up from 1 each time it is called.
@@ -67,7 +76,7 @@ pub fn process_numbers(_numbers: &[i32]) -> i32 {
 /// assert_eq!(counter(), 3);
 /// ```
 pub fn make_counter() -> impl FnMut() -> i32 {
-    let mut _count = 0;
+    let mut count = 0;
     move || {
         count += 1;
         count
@@ -80,7 +89,7 @@ pub fn make_counter() -> impl FnMut() -> i32 {
 
 /// Divides `a` by `b`.
 /// Returns `Ok(result)` on success, or `Err("division by zero")` when `b` is 0.0.
-pub fn divide(_a: f64, _b: f64) -> Result<f64, String> {
+pub fn divide(a: f64, b: f64) -> Result<f64, String> {
     if b == 0.0 {
         Err("division by zero".to_string())
     } else {
@@ -97,7 +106,7 @@ pub enum ParseError {
 }
 
 impl fmt::Display for ParseError {
-    fn fmt(&self, _f: &mut fmt::Formatter<'_>) -> fmt::Result {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
             ParseError::NotANumber => write!(f, "Input is not a valid number"),
             ParseError::NotPositive => write!(f, "Number is not positive"),
@@ -107,7 +116,7 @@ impl fmt::Display for ParseError {
 
 /// Parses `input` as a positive integer (> 0).
 /// Returns the number on success, or an appropriate `ParseError` on failure.
-pub fn parse_positive_number(_input: &str) -> Result<i32, ParseError> {
+pub fn parse_positive_number(input: &str) -> Result<i32, ParseError> {
     let number = input.parse::<i32>().map_err(|_| ParseError::NotANumber)?;
 
     if number <= 0 {
