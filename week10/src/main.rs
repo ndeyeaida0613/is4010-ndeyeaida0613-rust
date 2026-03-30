@@ -1,6 +1,6 @@
 fn main() {
     println!("Week 10: Mastering ownership and borrowing");
-    
+
     // Calling these satisfies the "dead-code" warning
     problem_1();
     problem_2();
