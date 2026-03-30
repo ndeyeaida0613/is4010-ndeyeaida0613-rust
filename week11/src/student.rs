@@ -133,7 +133,6 @@ impl Grade {
             _ => None,
         }
     }
-
     /// Returns `true` for grades A, B, and C; `false` for D and F.
     pub fn is_passing(&self) -> bool {
         matches!(self, Grade::A | Grade::B | Grade::C)
@@ -167,7 +166,6 @@ impl StudentDatabase {
             students: HashMap::new(),
         }
     }
-
     /// Adds a student to the database.
     /// Returns `Err` if a student with the same id already exists.
     pub fn add_student(&mut self, student: Student) -> Result<(), String> {
