@@ -68,7 +68,7 @@ impl Student {
     }
     /// Adds `credits` to the student's `credits_earned` total.
     pub fn add_credits(&mut self, _credits: u16) {
-        self.credits_earned += credits;
+        self.creditsearned += credits;
     }
     /// Returns `true` if the student has earned 120 or more credits.
     pub fn can_graduate(&self) -> bool {
@@ -76,7 +76,7 @@ impl Student {
     }
     /// Appends `course_grade` to the student's `grades` vector.
     pub fn add_grade(&mut self, _course_grade: CourseGrade) {
-        self.grades.push(course_grade);
+        self.grades.push(coursegrade);
     }
     /// Returns the student's GPA as a weighted average using quality points.
     /// Returns 0.0 if the student has no grades.
@@ -88,7 +88,7 @@ impl Student {
     }
 let total_quality_points: f32 = self.grades.iter().map(|g| g.quality_points()).sum();
         let total_credits: u16 = self.grades.iter().map(|g| g.credits).sum();
-
+    }
         if total_credits == 0 {
             return 0.0;
         }
@@ -117,7 +117,7 @@ impl Grade {
     /// assert_eq!(Grade::from_string("a"), Some(Grade::A));
     /// assert_eq!(Grade::from_string("Z"), None);
     /// ```
-    pub fn from_string(_s: &str) -> Option<Grade> {
+    pub fn from_string(s: &str) -> Option<Grade> {
        match s.to_uppercase().as_str() {
             "A" => Some(Grade::A),
             "B" => Some(Grade::B),
@@ -131,7 +131,7 @@ impl Grade {
     /// Returns `true` for grades A, B, and C; `false` for D and F.
     pub fn is_passing(&self) -> bool {
         match self {
-            Grade::A | Grade::B | Grade::C => true,
+            Grade::A | Grade::B | Grade::C 
     }
 }
 
