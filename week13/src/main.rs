@@ -27,13 +27,13 @@ fn main() {
 /// Hint: use iterator adaptors (.split_whitespace(), .map(), .max_by_key(), etc.)
 pub fn analyze_text(_text: &str) -> (usize, f64, String) {
     let words: Vec<&str> = text.split_whitespace().collect();
-    
+
     if words.is_empty() {
         return (0, 0.0, String::new());
     }
 
     let word_count = words.len();
-    
+
     // Sum the length of all words
     let total_chars: usize = words.iter().map(|w| w.len()).sum();
     let avg_word_length = total_chars as f64 / word_count as f64;
@@ -55,11 +55,7 @@ pub fn analyze_text(_text: &str) -> (usize, f64, String) {
 ///
 /// Hint: .filter(), .map(), .sum()
 pub fn process_numbers(_numbers: &[i32]) -> i32 {
-    numbers
-        .iter()
-        .filter(|n| *n % 2 == 0)
-        .map(|n| n * n)
-        .sum()
+    numbers.iter().filter(|n| *n % 2 == 0).map(|n| n * n).sum()
 }
 
 /// Returns a closure that counts up from 1 each time it is called.
@@ -113,7 +109,7 @@ impl fmt::Display for ParseError {
 /// Returns the number on success, or an appropriate `ParseError` on failure.
 pub fn parse_positive_number(_input: &str) -> Result<i32, ParseError> {
     let number = input.parse::<i32>().map_err(|_| ParseError::NotANumber)?;
-    
+
     if number <= 0 {
         Err(ParseError::NotPositive)
     } else {
