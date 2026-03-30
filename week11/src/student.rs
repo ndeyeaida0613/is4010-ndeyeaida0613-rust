@@ -47,31 +47,41 @@ impl Student {
     /// Creates a new student with the given id, name, and email.
     /// `credits_earned` starts at 0 and `grades` starts empty.
     pub fn new(_id: String, _name: String, _email: String) -> Student {
-        todo!("Implement Student::new")
+        Student {
+            id,
+            name,
+            email,
+            credits_earned: 0,
+            grades: Vec::new(),
+        }
     }
-
     /// Returns a string describing the student's class standing based on credits:
     ///   0–29   → "Freshman"
     ///   30–59  → "Sophomore"
     ///   60–89  → "Junior"
     ///   90+    → "Senior"
     pub fn class_standing(&self) -> &str {
-        todo!("Implement class_standing")
+        match self.credits_earned {
+            0..=29 => "Freshman",
+            30..=59 => "Sophomore",
+            60..=89 => "Junior",
+            _ => "Senior",
+        }
     }
 
     /// Adds `credits` to the student's `credits_earned` total.
     pub fn add_credits(&mut self, _credits: u16) {
-        todo!("Implement add_credits")
+        self.credits_earned += credits;
     }
 
     /// Returns `true` if the student has earned 120 or more credits.
     pub fn can_graduate(&self) -> bool {
-        todo!("Implement can_graduate")
+        self.credits_earned >= 120
     }
 
     /// Appends `course_grade` to the student's `grades` vector.
     pub fn add_grade(&mut self, _course_grade: CourseGrade) {
-        todo!("Implement add_grade")
+        self.grades.push(course_grade);
     }
 
     /// Returns the student's GPA as a weighted average using quality points.
@@ -79,17 +89,25 @@ impl Student {
     ///
     /// GPA = total quality points / total credit hours
     pub fn calculate_gpa(&self) -> f32 {
-        todo!("Implement calculate_gpa")
+        if self.grades.is_empty() {
+            return 0.0;
     }
-}
-
 impl Grade {
     /// Returns the GPA points for this letter grade:
     ///   A → 4.0, B → 3.0, C → 2.0, D → 1.0, F → 0.0
     pub fn to_gpa_points(&self) -> f32 {
         todo!("Implement to_gpa_points")
     }
+let total_quality_points: f32 = self.grades.iter().map(|g| g.quality_points()).sum();
+        let total_credits: u16 = self.grades.iter().map(|g| g.credits).sum();
 
+        if total_credits == 0 {
+            return 0.0;
+        }
+
+        total_quality_points / total_credits as f32
+    }
+}
     /// Parses a grade from a string (case-insensitive).
     /// Returns `None` for unrecognised inputs.
     ///
@@ -100,12 +118,22 @@ impl Grade {
     /// assert_eq!(Grade::from_string("Z"), None);
     /// ```
     pub fn from_string(_s: &str) -> Option<Grade> {
-        todo!("Implement from_string")
+       match s.to_uppercase().as_str() {
+            "A" => Some(Grade::A),
+            "B" => Some(Grade::B),
+            "C" => Some(Grade::C),
+            "D" => Some(Grade::D),
+            "F" => Some(Grade::F),
+            _ => None,
+        }
     }
 
     /// Returns `true` for grades A, B, and C; `false` for D and F.
     pub fn is_passing(&self) -> bool {
-        todo!("Implement is_passing")
+        match self {
+            Grade::A | Grade::B | Grade::C => true,
+            Grade::D | Grade::F => false,
+        }
     }
 }
 
@@ -117,51 +145,68 @@ impl CourseGrade {
         _credits: u16,
         _grade: Grade,
     ) -> CourseGrade {
-        todo!("Implement CourseGrade::new")
+        CourseGrade {
+            course_code,
+            course_name,
+            credits,
+            grade,
+        }
     }
 
     /// Returns the quality points for this course: credits × GPA points.
     pub fn quality_points(&self) -> f32 {
-        todo!("Implement quality_points")
+        elf.credits as f32 * self.grade.to_gpa_points()
     }
 }
 
 impl StudentDatabase {
     /// Creates a new, empty database.
     pub fn new() -> StudentDatabase {
-        todo!("Implement StudentDatabase::new")
+       StudentDatabase {
+            students: HashMap::new(),
+        }
     }
 
     /// Adds a student to the database.
     /// Returns `Err` if a student with the same id already exists.
     pub fn add_student(&mut self, _student: Student) -> Result<(), String> {
-        todo!("Implement add_student")
+        use std::collections::hash_map::Entry;
+        
+        match self.students.entry(student.id.clone()) {
+            Entry::Vacant(entry) => {
+                entry.insert(student);
+                Ok(())
+            }
+            Entry::Occupied(_) => Err(format!("Student with ID {} already exists", student.id)),
+        }
     }
-
     /// Returns a reference to the student with the given id, or `None`.
     pub fn find_student(&self, _id: &str) -> Option<&Student> {
-        todo!("Implement find_student")
+       self.students.get(id)
     }
 
     /// Returns a mutable reference to the student with the given id, or `None`.
     pub fn find_student_mut(&mut self, _id: &str) -> Option<&mut Student> {
-        todo!("Implement find_student_mut")
+       self.students.get_mut(id)
     }
 
     /// Returns the total number of students in the database.
     pub fn student_count(&self) -> usize {
-        todo!("Implement student_count")
+        self.students.len()
     }
 
     /// Returns the average GPA across all students.
     /// Returns 0.0 if there are no students.
     pub fn average_gpa(&self) -> f32 {
-        todo!("Implement average_gpa")
+        if self.students.is_empty() {
+            return 0.0;
     }
-
+let total_gpa: f32 = self.students.values().map(|s| s.calculate_gpa()).sum();
+        total_gpa / self.students.len() as f32
+    }
     /// Returns a vector of references to all students in the database.
     pub fn list_students(&self) -> Vec<&Student> {
-        todo!("Implement list_students")
+        self.students.values().collect()
     }
 }
 
