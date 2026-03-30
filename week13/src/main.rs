@@ -42,7 +42,16 @@ pub fn analyze_text(text: &str) -> (usize, f64, String) {
     // We fall back to converting an empty string slice if none are found.
     let longest_word = words
         .iter()
-        .max_by(|a, b| a.len().cmp(&b.len()))
+        .max_by(|a, b| {
+            let len_cmp = a.len().cmp(&b.len());
+            if len_cmp == std::cmp::Ordering::Equal {
+                // If they are equal, we return Greater to trick Rust into 
+                // keeping 'a' (the earlier word) as the maximum.
+                std::cmp::Ordering::Greater 
+            } else {
+                len_cmp
+            }
+        })
         .unwrap_or(&"")
         .to_string();
 
