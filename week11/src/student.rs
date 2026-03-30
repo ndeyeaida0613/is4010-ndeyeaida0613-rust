@@ -67,7 +67,7 @@ impl Student {
         }
     }
     /// Adds `credits` to the student's `credits_earned` total.
-    pub fn add_credits(&mut self, _credits: u16) {
+    pub fn add_credits(&mut self, credits: u16) {
         self.creditsearned += credits;
     }
     /// Returns `true` if the student has earned 120 or more credits.
@@ -75,7 +75,7 @@ impl Student {
         self.credits_earned >= 120
     }
     /// Appends `course_grade` to the student's `grades` vector.
-    pub fn add_grade(&mut self, _course_grade: CourseGrade) {
+    pub fn add_grade(&mut self, course_grade: CourseGrade) {
         self.grades.push(coursegrade);
     }
     /// Returns the student's GPA as a weighted average using quality points.
@@ -137,10 +137,10 @@ impl Grade {
 impl CourseGrade {
     /// Creates a new CourseGrade.
     pub fn new(
-        _course_code: String,
-        _course_name: String,
-        _credits: u16,
-        _grade: Grade,
+        course_code: String,
+        course_name: String,
+        credits: u16,
+        grade: Grade,
     ) -> CourseGrade {
         CourseGrade {
             course_code,
@@ -166,7 +166,7 @@ impl StudentDatabase {
 
     /// Adds a student to the database.
     /// Returns `Err` if a student with the same id already exists.
-    pub fn add_student(&mut self, _student: Student) -> Result<(), String> {
+    pub fn add_student(&mut self, student: Student) -> Result<(), String> {
         use std::collections::hash_map::Entry;
         
         match self.students.entry(student.id.clone()) {
@@ -178,12 +178,12 @@ impl StudentDatabase {
         }
     }
     /// Returns a reference to the student with the given id, or `None`.
-    pub fn find_student(&self, _id: &str) -> Option<&Student> {
+    pub fn find_student(&self, id: &str) -> Option<&Student> {
        self.students.get(id)
     }
 
     /// Returns a mutable reference to the student with the given id, or `None`.
-    pub fn find_student_mut(&mut self, _id: &str) -> Option<&mut Student> {
+    pub fn find_student_mut(&mut self, id: &str) -> Option<&mut Student> {
        self.students.get_mut(id)
     }
 
