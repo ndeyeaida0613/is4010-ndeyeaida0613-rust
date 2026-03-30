@@ -52,7 +52,7 @@ impl Student {
             grades: Vec::new(),
         }
     }
-
+}
     /// Returns a string describing the student's class standing based on credits:
     ///   0–29   → "Freshman"
     ///   30–59  → "Sophomore"
@@ -113,6 +113,7 @@ impl Grade {
             Grade::F => 0.0,
         }
     }
+}
     /// Parses a grade from a string (case-insensitive).
     /// Returns `None` for unrecognised inputs.
     ///
@@ -137,7 +138,6 @@ impl Grade {
     pub fn is_passing(&self) -> bool {
         matches!(self, Grade::A | Grade::B | Grade::C)
 }
-
 impl CourseGrade {
     /// Creates a new CourseGrade.
     pub fn new(
@@ -153,7 +153,7 @@ impl CourseGrade {
             grade,
         }
     }
-
+}
     /// Returns the quality points for this course: credits × GPA points.
     pub fn quality_points(&self) -> f32 {
         elf.credits as f32 * self.grade.to_gpa_points()
