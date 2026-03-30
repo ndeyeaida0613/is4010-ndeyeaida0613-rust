@@ -35,14 +35,14 @@ pub fn analyze_text(text: &str) -> (usize, f64, String) {
     let word_count = words.len();
     
     // Sum the length of all words
-    let total_chars: usize = words.iter().map(|w| w.len()).sum();
+    let total_chars: usize = words.iter().map(|w:/* Type*/| w.len()).sum();
     let avg_word_length = total_chars as f64 / word_count as f64;
 
     // Find the longest word. If there is a tie, max_by_key returns the last one.
     // We fall back to converting an empty string slice if none are found.
     let longest_word = words
         .iter()
-        .max_by_key(|w| w.len())
+        .max_by_key(|w: /* Type */| w.len())
         .unwrap_or(&"")
         .to_string();
 
