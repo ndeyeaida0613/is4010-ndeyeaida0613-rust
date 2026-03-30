@@ -38,10 +38,11 @@ pub fn analyze_text(text: &str) -> (usize, f64, String) {
     let total_chars: usize = words.iter().map(|w| w.len()).sum();
     let avg_word_length = total_chars as f64 / word_count as f64;
 
-    // Find the longest word. If there is a tie, max_by_key returns the last one.
-    // We fall back to converting an empty string slice if none are found.
+    // We reverse the iterator. Now, the "last" element checked with the
+    // maximum length is actually the first occurrence in the original string!
     let longest_word = words
         .iter()
+        .rev()
         .max_by_key(|w| w.len())
         .unwrap_or(&"")
         .to_string();
