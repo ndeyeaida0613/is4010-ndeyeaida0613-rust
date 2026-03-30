@@ -37,7 +37,6 @@ impl<T> Stack<T> {
     /// Creates a new, empty stack.
     pub fn new() -> Self {
         Stack { data: Vec::new() }
-            
     }
 
     /// Pushes `item` onto the top of the stack.
