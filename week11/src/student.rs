@@ -44,11 +44,7 @@ pub struct StudentDatabase {
 impl Student {
     /// Creates a new student with the given id, name, and email.
     /// `credits_earned` starts at 0 and `grades` starts empty.
-<<<<<<< HEAD
     pub fn new(_id: String, _name: String, _email: String) -> Student {
-=======
-    pub fn new(id: String, name: String, email: String) -> Student {
->>>>>>> cbe86f9d802e989f7d8dd3fb8fcb1e09c5b37ed2
         Student {
             id,
             name,
@@ -71,13 +67,8 @@ impl Student {
         }
     }
     /// Adds `credits` to the student's `credits_earned` total.
-<<<<<<< HEAD
     pub fn add_credits(&mut self, _credits: u16) {
         self.credits_earned += credits;
-=======
-    pub fn add_credits(&mut self, credits: u16) {
-        self.creditsearned += credits;
->>>>>>> cbe86f9d802e989f7d8dd3fb8fcb1e09c5b37ed2
     }
     /// Returns `true` if the student has earned 120 or more credits.
     pub fn can_graduate(&self) -> bool {
@@ -94,31 +85,16 @@ impl Student {
     pub fn calculate_gpa(&self) -> f32 {
         if self.grades.is_empty() {
             return 0.0;
-<<<<<<< HEAD
         }
         let total_quality_points: f32 = self.grades.iter().map(|cg| cg.quality_points()).sum();
-
         let total_credits: u16 = self.grades.iter().map(|cg| cg.credits).sum();
 
         if total_credits == 0 {
-            0.0
+            return 0.0;
         } else {
             total_quality_points / (total_credits as f32)
         }
     }
-}
-=======
-    }
-let total_quality_points: f32 = self.grades.iter().map(|g| g.quality_points()).sum();
-        let total_credits: u16 = self.grades.iter().map(|g| g.credits).sum();
-    }
-        if total_credits == 0 {
-            return 0.0;
-        }
->>>>>>> cbe86f9d802e989f7d8dd3fb8fcb1e09c5b37ed2
-
-        total_quality_points / total_credits as f32
-    }  
 impl Grade {
     /// Returns the GPA points for this letter grade:
     ///   A → 4.0, B → 3.0, C → 2.0, D → 1.0, F → 0.0
@@ -153,13 +129,7 @@ impl Grade {
 
     /// Returns `true` for grades A, B, and C; `false` for D and F.
     pub fn is_passing(&self) -> bool {
-<<<<<<< HEAD
         matches!(self, Grade::A | Grade::B | Grade::C)
-=======
-        match self {
-            Grade::A | Grade::B | Grade::C 
->>>>>>> cbe86f9d802e989f7d8dd3fb8fcb1e09c5b37ed2
-    }
 }
 
 impl CourseGrade {
@@ -187,11 +157,7 @@ impl CourseGrade {
 impl StudentDatabase {
     /// Creates a new, empty database.
     pub fn new() -> StudentDatabase {
-<<<<<<< HEAD
         StudentDatabase {
-=======
-       StudentDatabase {
->>>>>>> cbe86f9d802e989f7d8dd3fb8fcb1e09c5b37ed2
             students: HashMap::new(),
         }
     }
@@ -210,15 +176,9 @@ impl StudentDatabase {
         }
     }
     /// Returns a reference to the student with the given id, or `None`.
-<<<<<<< HEAD
     pub fn find_student(&self, _id: &str) -> Option<&Student> {
         self.students.get(id)
-=======
-    pub fn find_student(&self, id: &str) -> Option<&Student> {
-       self.students.get(id)
->>>>>>> cbe86f9d802e989f7d8dd3fb8fcb1e09c5b37ed2
     }
-
     /// Returns a mutable reference to the student with the given id, or `None`.
     pub fn find_student_mut(&mut self, id: &str) -> Option<&mut Student> {
        self.students.get_mut(id)
@@ -234,16 +194,9 @@ impl StudentDatabase {
     pub fn average_gpa(&self) -> f32 {
         if self.students.is_empty() {
             return 0.0;
-<<<<<<< HEAD
         }
-        let sum_gpas: f32 = self.students.values().map(|s| s.calculate_gpa()).sum();
-
-        sum_gpas / (self.students.len() as f32)
-=======
-    }
 let total_gpa: f32 = self.students.values().map(|s| s.calculate_gpa()).sum();
         total_gpa / self.students.len() as f32
->>>>>>> cbe86f9d802e989f7d8dd3fb8fcb1e09c5b37ed2
     }
     /// Returns a vector of references to all students in the database.
     pub fn list_students(&self) -> Vec<&Student> {
