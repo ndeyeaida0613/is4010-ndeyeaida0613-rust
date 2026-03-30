@@ -94,8 +94,7 @@ let total_quality_points: f32 = self.grades.iter().map(|g| g.quality_points()).s
         }
 
         total_quality_points / total_credits as f32
-    }
-}   
+    }  
 impl Grade {
     /// Returns the GPA points for this letter grade:
     ///   A → 4.0, B → 3.0, C → 2.0, D → 1.0, F → 0.0
