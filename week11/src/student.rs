@@ -16,7 +16,6 @@ pub struct Student {
     pub credits_earned: u16,
     pub grades: Vec<CourseGrade>,
 }
-
 #[derive(Debug, Clone, PartialEq)]
 pub enum Grade {
     A,
