@@ -192,4 +192,4 @@ mod tests {
         // bottom → top, so display order is [1, 2, 3]
         assert_eq!(format!("{}", s), "[1, 2, 3]");
     }
-
+}
