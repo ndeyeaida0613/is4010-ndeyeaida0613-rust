@@ -40,11 +40,10 @@ pub struct StudentDatabase {
 // IMPLEMENTATIONS — replace every todo!() with a real implementation.
 // When you do, remove the leading `_` from each parameter name.
 // ============================================================================
-
 impl Student {
     /// Creates a new student with the given id, name, and email.
     /// `credits_earned` starts at 0 and `grades` starts empty.
-    pub fn new(_id: String, _name: String, _email: String) -> Student {
+    pub fn new(id: String, name: String, email: String) -> Student {
         Student {
             id,
             name,
@@ -53,6 +52,7 @@ impl Student {
             grades: Vec::new(),
         }
     }
+
     /// Returns a string describing the student's class standing based on credits:
     ///   0–29   → "Freshman"
     ///   30–59  → "Sophomore"
@@ -66,18 +66,22 @@ impl Student {
             _ => "Senior",
         }
     }
+
     /// Adds `credits` to the student's `credits_earned` total.
-    pub fn add_credits(&mut self, _credits: u16) {
+    pub fn add_credits(&mut self, credits: u16) {
         self.credits_earned += credits;
     }
+
     /// Returns `true` if the student has earned 120 or more credits.
     pub fn can_graduate(&self) -> bool {
         self.credits_earned >= 120
     }
+
     /// Appends `course_grade` to the student's `grades` vector.
     pub fn add_grade(&mut self, course_grade: CourseGrade) {
-        self.grades.push(coursegrade);
+        self.grades.push(course_grade);
     }
+
     /// Returns the student's GPA as a weighted average using quality points.
     /// Returns 0.0 if the student has no grades.
     ///
@@ -86,15 +90,17 @@ impl Student {
         if self.grades.is_empty() {
             return 0.0;
         }
+
         let total_quality_points: f32 = self.grades.iter().map(|cg| cg.quality_points()).sum();
         let total_credits: u16 = self.grades.iter().map(|cg| cg.credits).sum();
 
         if total_credits == 0 {
-            return 0.0;
+            0.0
         } else {
             total_quality_points / (total_credits as f32)
         }
     }
+
 impl Grade {
     /// Returns the GPA points for this letter grade:
     ///   A → 4.0, B → 3.0, C → 2.0, D → 1.0, F → 0.0
