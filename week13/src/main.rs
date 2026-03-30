@@ -55,11 +55,7 @@ pub fn analyze_text(text: &str) -> (usize, f64, String) {
 ///
 /// Hint: .filter(), .map(), .sum()
 pub fn process_numbers(numbers: &[i32]) -> i32 {
-    numbers
-        .iter()
-        .filter(|n| *n % 2 == 0)
-        .map(|n| n * n)
-        .sum()
+    numbers.iter().filter(|n| *n % 2 == 0).map(|n| n * n).sum()
 }
 
 /// Returns a closure that counts up from 1 each time it is called.
