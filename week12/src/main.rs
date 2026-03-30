@@ -41,7 +41,7 @@ impl<T> Stack<T> {
     }
 
     /// Pushes `item` onto the top of the stack.
-    pub fn push(&mut self, _item: T) {
+    pub fn push(&mut self, item: T) {
         self.data.push(item);
     }
 
@@ -74,7 +74,7 @@ impl<T> Stack<T> {
 // An empty stack prints as "[]".
 // ============================================================================
 impl<T: fmt::Debug> fmt::Display for Stack<T> {
-    fn fmt(&self, _f: &mut fmt::Formatter<'_>) -> fmt::Result {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "[")?;
         for (i, item) in self.elements.iter() .enumerate() {
             if i > 0 {
