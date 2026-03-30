@@ -27,31 +27,23 @@ fn main() {
 /// Hint: use iterator adaptors (.split_whitespace(), .map(), .max_by_key(), etc.)
 pub fn analyze_text(text: &str) -> (usize, f64, String) {
     let words: Vec<&str> = text.split_whitespace().collect();
-
+    
     if words.is_empty() {
         return (0, 0.0, String::new());
     }
 
     let word_count = words.len();
-
+    
     // Sum the length of all words
     let total_chars: usize = words.iter().map(|w| w.len()).sum();
     let avg_word_length = total_chars as f64 / word_count as f64;
 
-    // Find the longest word. If there is a tie, max_by_key returns the last one.
-    // We fall back to converting an empty string slice if none are found.
+    // We reverse the iterator. Now, the "last" element checked with the 
+    // maximum length is actually the first occurrence in the original string!
     let longest_word = words
         .iter()
-        .max_by(|a, b| {
-            let len_cmp = a.len().cmp(&b.len());
-            if len_cmp == std::cmp::Ordering::Equal {
-                // If they are equal, we return Greater to trick Rust into 
-                // keeping 'a' (the earlier word) as the maximum.
-                std::cmp::Ordering::Greater 
-            } else {
-                len_cmp
-            }
-        })
+        .rev()
+        .max_by_key(|w| w.len())
         .unwrap_or(&"")
         .to_string();
 
