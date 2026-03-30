@@ -173,7 +173,7 @@ impl StudentDatabase {
     /// Returns `Err` if a student with the same id already exists.
     pub fn add_student(&mut self, student: Student) -> Result<(), String> {
         use std::collections::hash_map::Entry;
-        
+
         match self.students.entry(student.id.clone()) {
             Entry::Vacant(entry) => {
                 entry.insert(student);
