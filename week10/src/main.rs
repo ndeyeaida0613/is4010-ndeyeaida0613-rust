@@ -10,7 +10,6 @@ fn main() {
     problem_6();
     problem_7();
 }
-
 // PROBLEM 1
 fn problem_1() {
     let s1 = String::from("hello");
