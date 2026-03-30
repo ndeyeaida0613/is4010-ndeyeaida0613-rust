@@ -36,35 +36,34 @@ pub struct Stack<T> {
 impl<T> Stack<T> {
     /// Creates a new, empty stack.
     pub fn new() -> Self {
-        Stack {
-            elements: Vec::new(),
-        }
+        Stack { data: Vec::new() }
+            
     }
 
     /// Pushes `item` onto the top of the stack.
     pub fn push(&mut self, _item: T) {
-        self.elements.push(item);
+        self.data.push(item);
     }
 
     /// Removes and returns the top item, or `None` if the stack is empty.
     pub fn pop(&mut self) -> Option<T> {
-        self.elements.pop()
+        self.data.pop()
     }
 
     /// Returns a reference to the top item without removing it,
     /// or `None` if the stack is empty.
     pub fn peek(&self) -> Option<&T> {
-        self.elements.last()
+        self.data.last()
     }
 
     /// Returns `true` if the stack contains no items.
     pub fn is_empty(&self) -> bool {
-        self.elements.is_empty()
+        self.data.is_empty()
     }
 
     /// Returns the number of items in the stack.
     pub fn len(&self) -> usize {
-        self.elements.len()
+        self.data.len()
     }
 }
 
@@ -81,9 +80,9 @@ impl<T: fmt::Debug> fmt::Display for Stack<T> {
             if i > 0 {
                 write!(f, ", ")?;
             }
-            write!(f, "{}", item)?;
+            write!(f, "{:?}", item)?;
         }
-        write!(f, "}")
+        write!(f, "]")
     }
 }
 
