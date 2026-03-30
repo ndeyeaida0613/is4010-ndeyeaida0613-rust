@@ -54,17 +54,12 @@ pub fn analyze_text(text: &str) -> (usize, f64, String) {
 /// Example: [1, 2, 3, 4] → 2² + 4² = 4 + 16 = 20
 ///
 /// Hint: .filter(), .map(), .sum()
-<<<<<<< HEAD
-pub fn process_numbers(_numbers: &[i32]) -> i32 {
-    numbers.iter().filter(|n| *n % 2 == 0).map(|n| n * n).sum()
-=======
 pub fn process_numbers(numbers: &[i32]) -> i32 {
     numbers
         .iter()
         .filter(|n| *n % 2 == 0)
         .map(|n| n * n)
         .sum()
->>>>>>> ecd583e7161de28eec158ee7bb2eac4bd6a2c8cf
 }
 
 /// Returns a closure that counts up from 1 each time it is called.
