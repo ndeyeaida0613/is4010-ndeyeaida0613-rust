@@ -42,7 +42,7 @@ pub fn analyze_text(text: &str) -> (usize, f64, String) {
     // We fall back to converting an empty string slice if none are found.
     let longest_word = words
         .iter()
-        .max_by_key(|w| w.len())
+        .max_by(|a, b| a.len().cmp(&b.len()))
         .unwrap_or(&"")
         .to_string();
 
