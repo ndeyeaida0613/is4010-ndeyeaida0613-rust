@@ -22,15 +22,19 @@ use rand::Rng;
 /// assert_eq!(pwd.len(), 12);
 /// ```
 pub fn generate_random(length: usize, use_symbols: bool) -> String {
-   let mut rng = rand::thread_rng();
-    let mut words = Vec::with_capacity(word_count);
-
-    for _ in 0..word_count {
-        let idx = rng.gen_range(0..WORD_LIST.len());
-        words.push(WORD_LIST[idx]);
+   let mut charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".to_string();
+    
+    if use_symbols {
+        charset.push_str("!@#$%^&*");
     }
 
-    words.join(&separator.to_string())
+    let mut rng = thread_rng();
+    (0..length)
+        .map(|_| {
+            let idx = rng.gen_range(0..charset.len());
+            charset.chars().nth(idx).unwrap()
+        })
+        .collect()
 }
 /// Generates a passphrase made of `word_count` random common English words joined by `separator`.
 ///
@@ -44,17 +48,16 @@ pub fn generate_random(length: usize, use_symbols: bool) -> String {
 /// assert_eq!(phrase.split('-').count(), 3);
 /// ```
 pub fn generate_passphrase(word_count: usize, separator: char) -> String {
-    if length == 0 {
-        panic!("Length must be greater than 0");
+   let mut rng = thread_rng();
+    let mut words = Vec::new();
+
+    for _ in 0..word_count {
+        if let Some(&word) = WORD_LIST.choose(&mut rng) {
+            words.push(word);
+        }
     }
 
-    let mut rng = rand::thread_rng();
-    (0..length)
-        .map(|_| {
-            let digit = rng.gen_range(0..10);
-            digit.to_string()
-        })
-        .collect()
+    words.join(separator)
 }
 
 /// Generates a numeric PIN of the given `length` (digits 0–9 only).
@@ -68,7 +71,13 @@ pub fn generate_passphrase(word_count: usize, separator: char) -> String {
 /// assert!(pin.chars().all(|c| c.is_ascii_digit()));
 /// ```
 pub fn generate_pin(length: usize) -> String {
-    todo!("Implement generate_pin — hint: sample from '0'..='9'")
+    let mut rng = thread_rng();
+    (0..length)
+        .map(|_| {
+            let digit = rng.gen_range(0..10);
+            digit.to_string()
+        })
+        .collect()
 }
 
 // A small word list for passphrases.
