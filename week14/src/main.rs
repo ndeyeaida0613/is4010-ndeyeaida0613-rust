@@ -64,7 +64,7 @@ enum Commands {
     struct Validate {
         /// The password to validate.
         password: String,
-    },
+    }
 
 // ============================================================================
 // MAIN — implement the match arms below
