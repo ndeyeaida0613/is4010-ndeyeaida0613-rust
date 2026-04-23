@@ -54,7 +54,7 @@ enum Commands {
     }
 
     /// Generate a numeric PIN.
-    enum Pin {
+    struct Pin {
         /// Length of the PIN (default: 6).
         #[arg(short, long, default_value_t = 6)]
         length: usize,
