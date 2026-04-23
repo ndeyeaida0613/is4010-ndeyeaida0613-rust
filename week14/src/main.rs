@@ -58,7 +58,7 @@ enum Commands {
         /// Length of the PIN (default: 6).
         #[arg(short, long, default_value_t = 6)]
         length: usize,
-    },
+    }
 
     /// Check the strength of a password.
     Validate {
