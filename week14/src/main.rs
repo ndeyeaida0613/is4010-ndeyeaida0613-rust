@@ -51,7 +51,7 @@ enum Commands {
         /// Separator character between words (default: '-').
         #[arg(short, long, default_value_t = '-')]
         separator: char,
-    },
+    }
 
     /// Generate a numeric PIN.
     Pin {
