@@ -40,6 +40,7 @@ enum Commands {
         #[arg(short, long)]
         symbols: bool,
     },
+}
 
     /// Generate a passphrase from random words.
     Passphrase {
@@ -82,6 +83,7 @@ fn main() {
             println!("Estimated Entropy:  {:.2} bits", entropy);
         }
     }
+}
         Commands::Passphrase { words, separator } => {
             // TODO: call generate_passphrase(words, separator) and print the result
             let sep_str = separator.to_string();
