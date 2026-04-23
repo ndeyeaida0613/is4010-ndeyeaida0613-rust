@@ -131,7 +131,7 @@ pub fn calculate_entropy(password: &str) -> f64 {
         _ => 1.0, // Default for non-standard or empty cases
     };
 
-    (charset_size as f64).log2() * (length as f64)
+    charset_size.log2() * (length as f64)
 }
 
 /// Ten common passwords to flag as weak patterns.
