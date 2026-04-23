@@ -43,7 +43,7 @@ enum Commands {
 }
 
     /// Generate a passphrase from random words.
-    Passphrase {
+    enum Passphrase {
         /// Number of words (default: 4).
         #[arg(short, long, default_value_t = 4)]
         words: usize,
