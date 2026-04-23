@@ -114,5 +114,3 @@ fn main() {
                 println!("No common patterns detected.");
             }
         }
-    }
-}
