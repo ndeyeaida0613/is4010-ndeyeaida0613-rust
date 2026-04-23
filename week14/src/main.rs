@@ -32,86 +32,59 @@ struct Cli {
 enum Commands {
     /// Generate a random password.
     Random {
-        /// Length of the password (default: 16).
         #[arg(short, long, default_value_t = 16)]
         length: usize,
-
-        /// Include symbols such as !@#$%^&*.
         #[arg(short, long)]
         symbols: bool,
     },
-}
 
     /// Generate a passphrase from random words.
-    struct Passphrase {
-        /// Number of words (default: 4).
+    Passphrase {
         #[arg(short, long, default_value_t = 4)]
         words: usize,
-
-        /// Separator character between words (default: '-').
         #[arg(short, long, default_value_t = '-')]
         separator: char,
-    }
+    },
 
     /// Generate a numeric PIN.
-    struct Pin {
-        /// Length of the PIN (default: 6).
+    Pin {
         #[arg(short, long, default_value_t = 6)]
         length: usize,
-    }
+    },
 
     /// Check the strength of a password.
-    struct Validate {
-        /// The password to validate.
+    Validate {
         password: String,
-    }
+    },
+} // <--- The Enum ends HERE
 
-// ============================================================================
-// MAIN — implement the match arms below
-// ============================================================================
 fn main() {
     let cli = Cli::parse();
 
     match cli.command {
         Commands::Random { length, symbols } => {
-            // TODO: call generate_random(length, symbols) and print the result
-            // Bonus: also print the entropy using calculate_entropy()
             let password = generate_random(length, symbols);
-            let entropy = calculate_entropy(&password);
-            
             println!("Generated Password: {}", password);
-            println!("Estimated Entropy:  {:.2} bits", entropy);
+            println!("Entropy: {:.2} bits", calculate_entropy(&password));
         }
-    }
-}
+
         Commands::Passphrase { words, separator } => {
-            // TODO: call generate_passphrase(words, separator) and print the result
-            let sep_str = separator.to_string();
-            let passphrase = generate_passphrase(words, &sep_str);
-            
+            // Note: generate_passphrase usually takes the char directly
+            let passphrase = generate_passphrase(words, separator);
             println!("Generated Passphrase: {}", passphrase);
         }
 
         Commands::Pin { length } => {
-            // TODO: call generate_pin(length) and print the result
             let pin = generate_pin(length);
             println!("Generated PIN: {}", pin);
         }
 
         Commands::Validate { password } => {
-            // TODO: call validate_strength(&password) and check_common_patterns(&password)
-            // Print the strength and warn if a common pattern is detected
-           let strength = validate_strength(&password);
-            let is_common = check_common_patterns(&password);
-            let entropy = calculate_entropy(&password);
-
-            println!("--- Password Analysis ---");
+            let strength = validate_strength(&password);
             println!("Strength Score: {:?}", strength);
-            println!("Entropy:        {:.2} bits", entropy);
-
-            if is_common {
-                println!("WARNING: This password uses a common pattern or is easily guessable!");
-            } else {
-                println!("No common patterns detected.");
+            if check_common_patterns(&password) {
+                println!("WARNING: Common pattern detected!");
             }
         }
+    } // <--- The Match ends HERE
+} // <--- The Main function ends HERE
