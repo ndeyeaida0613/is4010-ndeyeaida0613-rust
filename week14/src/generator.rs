@@ -51,16 +51,18 @@ pub fn generate_random(length: usize, use_symbols: bool) -> String {
 /// assert_eq!(phrase.split('-').count(), 3);
 /// ```
 pub fn generate_passphrase(word_count: usize, separator: char) -> String {
-   let mut rng = thread_rng();
+    let mut rng = thread_rng();
     let mut words = Vec::new();
 
+    // 1. Run the loop to collect the words
     for _ in 0..word_count {
         if let Some(&word) = WORD_LIST.choose(&mut rng) {
             words.push(word);
         }
+    } // <--- CLOSE THE LOOP HERE
 
-    return words.join(&separator.to_string());
-}
+    // 2. Join the words and return them (Outside the loop!)
+    words.join(&separator.to_string())
 }
 /// Generates a numeric PIN of the given `length` (digits 0–9 only).
 ///
