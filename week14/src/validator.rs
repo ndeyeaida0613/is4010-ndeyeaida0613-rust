@@ -115,7 +115,7 @@ pub fn calculate_entropy(password: &str) -> f64 {
     let has_digit = password.chars().any(|c| c.is_ascii_digit());
     let has_symbol = password.chars().any(|c| !c.is_alphanumeric());
 
-    let charset_size = match (has_lower, has_upper, has_digit, has_symbol) {
+    let charset_size: f32 = match (has_lower, has_upper, has_digit, has_symbol) {
         (_, _, _, true) => 94.0,
         (_, _, true, _) => 62.0,
         (_, true, _, _) => 52.0,
