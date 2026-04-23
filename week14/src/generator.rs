@@ -5,8 +5,8 @@
 // The tests at the bottom verify your implementations.
 
 #![allow(dead_code, unused_imports)]
-use rand::(thread_rng, Rng;);
-use rand::seq::sliceRandom;
+use rand::{thread_rng, Rng};
+use rand::seq::SliceRandom; // Note: 'SliceRandom' must be capitalized
 
 /// Generates a random password of the given `length`.
 ///
