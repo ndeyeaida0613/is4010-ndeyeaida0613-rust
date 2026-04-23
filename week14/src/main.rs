@@ -64,7 +64,6 @@ enum Commands {
         /// The password to validate.
         password: String,
     },
-}
 
 // ============================================================================
 // MAIN — implement the match arms below
@@ -82,7 +81,7 @@ fn main() {
             println!("Generated Password: {}", password);
             println!("Estimated Entropy:  {:.2} bits", entropy);
         }
-
+    }
         Commands::Passphrase { words, separator } => {
             // TODO: call generate_passphrase(words, separator) and print the result
             let sep_str = separator.to_string();
