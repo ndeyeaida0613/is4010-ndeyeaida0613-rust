@@ -61,7 +61,7 @@ pub fn generate_passphrase(word_count: usize, separator: char) -> String {
 
     words.join(&separator.to_string())
 }
-
+}
 /// Generates a numeric PIN of the given `length` (digits 0–9 only).
 ///
 /// Panics if `length` is 0.
