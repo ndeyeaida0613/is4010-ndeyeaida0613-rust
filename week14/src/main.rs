@@ -53,9 +53,7 @@ enum Commands {
     },
 
     /// Check the strength of a password.
-    Validate {
-        password: String,
-    },
+    Validate { password: String },
 } // <--- The Enum ends HERE
 
 fn main() {

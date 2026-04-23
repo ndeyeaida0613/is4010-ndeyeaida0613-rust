@@ -57,10 +57,18 @@ pub fn validate_strength(password: &str) -> PasswordStrength {
     }
 
     // 2. Character Classes
-    if password.chars().any(|c| c.is_lowercase()) { score += 1; }
-    if password.chars().any(|c| c.is_uppercase()) { score += 1; }
-    if password.chars().any(|c| c.is_ascii_digit()) { score += 1; }
-    if password.chars().any(|c| !c.is_alphanumeric()) { score += 1; }
+    if password.chars().any(|c| c.is_lowercase()) {
+        score += 1;
+    }
+    if password.chars().any(|c| c.is_uppercase()) {
+        score += 1;
+    }
+    if password.chars().any(|c| c.is_ascii_digit()) {
+        score += 1;
+    }
+    if password.chars().any(|c| !c.is_alphanumeric()) {
+        score += 1;
+    }
 
     match score {
         0..=2 => PasswordStrength::Weak,
@@ -125,7 +133,6 @@ pub fn calculate_entropy(password: &str) -> f64 {
 
     (charset_size as f64).log2() * (length as f64)
 }
-
 
 /// Ten common passwords to flag as weak patterns.
 pub const COMMON_PASSWORDS: &[&str] = &[

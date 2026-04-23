@@ -5,8 +5,8 @@
 // The tests at the bottom verify your implementations.
 
 #![allow(dead_code, unused_imports)]
-use rand::{thread_rng, Rng};
-use rand::seq::SliceRandom; // Note: 'SliceRandom' must be capitalized
+use rand::seq::SliceRandom;
+use rand::{thread_rng, Rng}; // Note: 'SliceRandom' must be capitalized
 
 /// Generates a random password of the given `length`.
 ///
@@ -24,9 +24,9 @@ use rand::seq::SliceRandom; // Note: 'SliceRandom' must be capitalized
 /// ```
 pub fn generate_random(length: usize, use_symbols: bool) -> String {
     assert!(length > 0, "length must be > 0");
-   
-   let mut charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".to_string();
-    
+
+    let mut charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".to_string();
+
     if use_symbols {
         charset.push_str("!@#$%^&*");
     }
@@ -75,8 +75,8 @@ pub fn generate_passphrase(word_count: usize, separator: char) -> String {
 /// assert!(pin.chars().all(|c| c.is_ascii_digit()));
 /// ```
 pub fn generate_pin(length: usize) -> String {
-   assert!(length > 0, "length must be > 0");
-   
+    assert!(length > 0, "length must be > 0");
+
     let mut rng = thread_rng();
     (0..length)
         .map(|_| {
