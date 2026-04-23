@@ -84,7 +84,7 @@ fn main() {
         }
     }
 }
-        Commands::Passphrase {! words, separator } => {
+        Commands::Passphrase { words, separator } => {
             // TODO: call generate_passphrase(words, separator) and print the result
             let sep_str = separator.to_string();
             let passphrase = generate_passphrase(words, &sep_str);
