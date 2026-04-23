@@ -61,7 +61,7 @@ enum Commands {
     }
 
     /// Check the strength of a password.
-    Validate {
+    struct Validate {
         /// The password to validate.
         password: String,
     },
